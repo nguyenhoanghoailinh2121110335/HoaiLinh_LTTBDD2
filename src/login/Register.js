@@ -84,7 +84,7 @@ return (
 
               <TextInput
                   style={styles.input}
-                  placeholder="confirmPassword"
+                  placeholder="ConfirmPassword"
                   secureTextEntry
                   value={confirmPassword}
                   onChangeText={(value) => setConfirmPassword(value)}
