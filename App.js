@@ -1,38 +1,36 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './pages/HomeScreen/HomeScreen'
-import Header from './components/Header';
-import Product_detial from './components/Product_detail';
-import Cart from './components/Cart';
-import Menu from './components/Menu';
-import Login from './pages/Login/login';
-
-
+import HomeScreen from './src/views/screens/HomeScreen';
+import DetailsScreen from './src/views/screens/DetailsScreen';
+import { StatusBar } from 'react-native';
+import COLORS from './src/consts/colors';
+import Login from './src/login/Login';
+import Register from './src/login/Register';
+import Addtocart from './src/views/screens/Addtocart';
+import Payment from './src/views/screens/Payment';
+import { SearchProvider } from './src/views/screens/SearchContext';
 const Stack = createStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <View style={{ flex: 1, paddingHorizontal: 15 }}>
-      <Header></Header>
+    <SearchProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-          />
-          <Stack.Screen name="Cart" component={Cart} />
-          <Stack.Screen name="SingleProduct" component={Product_detial} options={{ headerTitle: 'Chi tiết sản phẩm' }} />
+        <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="Addtocart" component={Addtocart} />
+          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+          <Stack.Screen name="Payment" component={Payment} />
+
         </Stack.Navigator>
-        <Menu></Menu>
       </NavigationContainer>
-    </View>
+    </SearchProvider>
+
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+
+export default App;
